@@ -1,41 +1,16 @@
 pipeline {
-    agent any
-
-    stages {
-        stage ('Compile Stage') {
-
-            steps {
-                
-                    sh 'mvn clean compile'
-                }
-            
+    agent {
+        node {
+            label 'built-in'
+            customWorkspace '/mnt/jenkins'
         }
-
-        stage ('Testing Stage') {
-
+    }
+	stages {
+        stage('new_folder') {
             steps {
-                
-                    sh 'mvn test'
-                }
-            
+                sh 'mkdir Dee'
+            }
         }
-
-
-        stage ('Install Stage') {
-            steps {
-                
-                    sh 'mvn install'
-                }
-            
-        }
-        
-        stage ('Echo Branch') {
-
-            steps {
-                
-                    echo "This is master branch"
-                }
-            
-        }
+		
     }
 }
